@@ -29,9 +29,9 @@ def creatematrix(r, c):
     for i in range(0, r):
         for j in range(0, c):
             t.append(random.randint(1, 10))
-        m.append(t)
+        n.append(t)
         t = []
-    return m
+    return n
 
 
 c1 = 1
