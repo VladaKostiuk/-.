@@ -11,17 +11,17 @@ int main(){
     char *c;
     int la,lb;
     int i;
-    printf("Введіть перше число : ");
-    scanf("%s",a);
-    printf("Введіть друге число : ");
-    scanf("%s",b);
+    printf("Введіть перше число : "); 
+    scanf("%s",a); // запис 1 числа в змінну а
+    printf("Введіть друге число : "); 
+    scanf("%s",b); // запис 2 числа в змінну b
     printf("Множення двох чисел: ");
-    c = multiply(a,b);
-    printf("%s",c);
+    c = multiply(a,b); // запис результату добутку в змінну с
+    printf("%s",c); // виведення результату
     return 0;
 }
 
-char * multiply(char a[],char b[]){
+char * multiply(char a[],char b[]){ // ф-ція в якій розраховується добуток
     static char mul[MAX];
     char c[MAX];
     char temp[MAX];
@@ -29,33 +29,35 @@ char * multiply(char a[],char b[]){
     int i,j,k=0,x=0,y;
     long int r=0;
     long sum = 0;
-    la=strlen(a)-1;
-        lb=strlen(b)-1;
+    la=strlen(a)-1; // довжина 1 слова (-1)
+        lb=strlen(b)-1; // довжина 2 слова (-1)
    
         for(i=0;i<=la;i++){
-                a[i] = a[i] - 48;
+                printf("%d a\n", a[i]);
+                a[i] = a[i] - 48; // утворення допоміжного списку (переведення заданих цифр числа в ASCII код)
         }
 
         for(i=0;i<=lb;i++){
-                b[i] = b[i] - 48;
+                printf("%d b\n", b[i]);
+                b[i] = b[i] - 48; // утворення допоміжного списку (переведення заданих цифр числа в ASCII код)
         }
 
     for(i=lb;i>=0;i--){
          r=0;
          for(j=la;j>=0;j--){
-             temp[k++] = (b[i]*a[j] + r)%10;
+             temp[k++] = (b[i]*a[j] + r)%10; // заповнення тимчасового списку temp
              r = (b[i]*a[j]+r)/10;
          }
-         temp[k++] = r;
+         temp[k++] = r; // надання певним елементам списку temp, значення змінної r, типу long int
          x++;
          for(y = 0;y<x;y++){
-             temp[k++] = 0;
+             temp[k++] = 0; // надання певним елементам списку temp, значення 0
          }
     }
    
     k=0;
     r=0;
-    for(i=0;i<la+lb+2;i++){
+    for(i=0;i<la+lb+2;i++){ // розрахунок добутку чисел шляхом розкладання 
          sum =0;
          y=0;
          for(j=1;j<=lb+1;j++){
@@ -70,8 +72,8 @@ char * multiply(char a[],char b[]){
     c[k] = r;
     j=0;
     for(i=k-1;i>=0;i--){
-         mul[j++]=c[i] + 48;
+         mul[j++]=c[i] + 48; // посимвольний запис в список результату добутку 
     }
-    mul[j]='\0';
+    mul[j]='\0'; // надання останньому символу значення нуль-термінованого рядка
     return mul;
 }
